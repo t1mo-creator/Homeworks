@@ -1,4 +1,4 @@
-from src.mask import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(payment: str) -> str:
@@ -13,10 +13,12 @@ def mask_account_card(payment: str) -> str:
 
     return f'{name} {masked_number}'
 
+
 def get_date(user_data: str) -> str:
     """Функция, которая изменяет формат даты"""
     data_day = user_data.split("Т")[0]
     return f"{(user_data[8:10])}.{(data_day.split('-')[-2])}.{(data_day.split('-')[-3])}"
+
 
 card = "Maestro 8990922113665229"
 masked_info = get_mask_card_number(card)
