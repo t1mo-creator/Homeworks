@@ -11,4 +11,3 @@ def get_mask_account(mask_account: str) -> str:
     mask_account = str(mask_account)
     new_mask_account = "**" + mask_account[-4:]
     return new_mask_account
-
