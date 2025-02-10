@@ -1,13 +1,23 @@
+def get_mask_card_number(card_number: str) -> str:
+    """Функция маскировки номера карты"""
 
-def get_mask_card_number(numbers: str) -> str:
-    """Принимает на вход номер карты в виде числа и возвращает маску номера по правилу XXXX XX** **** XXXX"""
-    numbers = str(numbers)
-    new_mask_card = numbers[:4] + numbers[4:14] + "** **** " + numbers[-4:]
-    return new_mask_card
+    card_number_str = str(card_number)
+
+    if len(card_number_str) == 16:
+        return f"{card_number_str[:4]} {card_number_str[4:6]}** **** {card_number_str[-4:]}"
+    else:
+        return "Неверный формат банковской карты"
 
 
-def get_mask_account(mask_account: str) -> str:
-    """Принимает на вход номер счета в виде числа и возвращает маску номера по правилу **XXXX"""
-    mask_account = str(mask_account)
-    new_mask_account = "**" + mask_account[-4:]
-    return new_mask_account
+
+
+def get_mask_account(accound_number: str) -> str:
+    """Функция маскировки номера счета"""
+
+    account_number_str = str(accound_number)
+
+    if len(account_number_str) == 20:
+        return f"**{account_number_str[-4:]}"
+    else:
+        return "Неверный формат номера счета"
+
