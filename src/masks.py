@@ -9,8 +9,6 @@ def get_mask_card_number(card_number: str) -> str:
         return "Неверный формат банковской карты"
 
 
-
-
 def get_mask_account(accound_number: str) -> str:
     """Функция маскировки номера счета"""
 
@@ -20,4 +18,3 @@ def get_mask_account(accound_number: str) -> str:
         return f"**{account_number_str[-4:]}"
     else:
         return "Неверный формат номера счета"
-

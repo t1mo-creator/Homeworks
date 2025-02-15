@@ -22,10 +22,8 @@ def mask_account_card(account_info: str) -> str:
         )
 
 
-
 def get_data(date: str) -> str:
     """Функция преобразования даты"""
 
     date_update = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
     return date_update.strftime("%d.%m. %Y")
-
