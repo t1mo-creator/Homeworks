@@ -24,4 +24,3 @@ def sort_by_date(input_list: list[Any], descending=True) -> Any:
         return sorted_list
     else:
         return "Список пуст"
-
