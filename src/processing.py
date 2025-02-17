@@ -16,7 +16,9 @@ def filter_by_state(input_list: list[Any], state="EXECUTED") -> Any:
 
 
 def sort_by_date(input_list: list[Any], descending=True) -> Any:
-    """Функция сортировки операций по дате"""
+    """Функция сортировки операций по дате
+    @rtype: object
+    """
     if len(input_list) > 0:
         sorted_list = sorted(
             input_list, key=lambda x: x.get("date"), reverse=descending
