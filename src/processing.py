@@ -1,22 +1,20 @@
 from typing import Any
 
 
-def filter_by_state(input_list: list[Any], state="EXECUTED") -> Any:
-    """Функция фильтрации операций по ключу state"""
-
-    filtered_list = []
-    if len(input_list) > 0:
-        for element in input_list:
-            if element["state"] == state:
-                filtered_list.append(element)
-
-            return filtered_list
-    else:
-        return "Список пуст"
+def filter_by_state(list_dict: list, state: str = "EXECUTED") -> list:
+    """Функция которая принимает список словарей по ключу state
+    и возвращает список словарей, содержащих данный ключ"""
+    filter_list = []
+    for i in list_dict:
+        if i.get("state") == state:
+            filter_list.append(i)
+    return filter_list
 
 
 def sort_by_date(input_list: list[Any], descending=True) -> Any:
-    """Функция сортировки операций по дате"""
+    """Функция сортировки операций по дате
+    @rtype: object
+    """
     if len(input_list) > 0:
         sorted_list = sorted(
             input_list, key=lambda x: x.get("date"), reverse=descending
