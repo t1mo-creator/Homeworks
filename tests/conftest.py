@@ -37,3 +37,4 @@ def date():
 @pytest.fixture
 def input_date():
     return "2018-07-11T02:26:18.671407"
+
