@@ -1,11 +1,10 @@
 from src.widget import mask_account_card
-from src.widget import get_data
+from src.widget import get_date
 from src.processing import filter_by_state
 from src.processing import sort_by_date
 
 print(mask_account_card("Visa Platinum 8990922113665229"))
-print(mask_account_card("Счет 73654108430135874305"))
-print(get_data("2018-07-11T02:26:18.671407"))
+print(get_date("2018-07-11T02:26:18.671407"))
 
 print(sort_by_date([{"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
                     {"id": 939719570,

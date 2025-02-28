@@ -4,7 +4,7 @@ from src.widget import get_date, mask_account_card
 
 
 @pytest.mark.parametrize(
-    "value",
+    "value, expected",
     [
         ("Visa Platinum 7000792289606361", "Visa Platinum 7000 79** **** 6361"),
         ("Mastercard 1234567890123456", "Mastercard 1234 56** **** 3456"),
@@ -15,27 +15,14 @@ from src.widget import get_date, mask_account_card
         ("73654108430135874305", "**4305"),
     ],
 )
-def test_mask_account_card(value):
-    assert mask_account_card(value)
+def test_mask_account_card(value, expected):
+    assert mask_account_card(value) == expected
 
 
-@pytest.mark.parametrize(
-    "value",
-    [
-        ("Visa Platinum ", "номер карты не указан"),
-        ("Счет ", "номер счета не указан"),
-        ("", "нет данных"),
-        ("1", "некорректный номер карты"),
-    ],
-)
+@pytest.mark.parametrize("value", ["Visa Platinum ", "Счет ", ""])
 def test_mask_account_card_valueerror(value):
     with pytest.raises(ValueError):
         mask_account_card(value)
-
-
-def test_mask_account_card_valueerror():
-    with pytest.raises(ValueError):
-        mask_account_card("")
 
 
 def test_get_date_valueerror():
