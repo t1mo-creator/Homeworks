@@ -1,13 +1,13 @@
 import pytest
+from src.masks import get_mask_card_number
+from src.masks import get_mask_account
 
 
-@pytest.mark.parametrize("x", [7000792289606361, 8000522289606361, 700792289606361, ()])
-def test_get_mask_card_number(x):
-    card_number_str = str(x)
-    assert f"{card_number_str[:4]} {card_number_str[4:6]}** **** {card_number_str[-4:]}"
+def test_get_mask_card_numbers(numbers_16):
+    assert get_mask_card_number(numbers_16) == "7000 79** **** 6361"
 
+def test_get_mask_card_numbers_with_spaces(numbers_16_spases):
+    assert get_mask_card_number(numbers_16_spases) == "7000 79** **** 6361"
 
-@pytest.mark.parametrize("x", [73654108430135874305, 773654108430135874305, 3373654108430135874305, ()])
-def test_get_mask_account(x):
-    account_number_str = str(x)
-    assert f"**{account_number_str[-4:]}"
+def test_get_mask_account(numbers_20):
+    assert get_mask_account(numbers_20) == "**1234"
