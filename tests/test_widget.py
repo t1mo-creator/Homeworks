@@ -1,23 +1,33 @@
 import pytest
 
-from src.masks import get_mask_account, get_mask_card_number
-from src.widget import get_data
+from src.widget import get_date, mask_account_card
 
 
-def test_get_data(input_date):
-    assert get_data(input_date)
+@pytest.mark.parametrize(
+    "value, expected",
+    [
+        ("Visa Platinum 7000792289606361", "Visa Platinum 7000 79** **** 6361"),
+        ("Mastercard 1234567890123456", "Mastercard 1234 56** **** 3456"),
+        ("Мир 2200123456789010", "Мир 2200 12** **** 9010"),
+        ("Union Pay 6010203040506070", "Union Pay 6010 20** **** 6070"),
+        ("Счет 73654108430135874305", "Счет **4305"),
+        ("7000792289606361", "7000 79** **** 6361"),
+        ("73654108430135874305", "**4305"),
+    ],
+)
+def test_mask_account_card(value, expected):
+    assert mask_account_card(value) == expected
 
 
-@pytest.mark.parametrize("x",
-                         {'Visa Platinum 8990922113665229', 'Счет 73654108430135874305', 'Maestro 1596837868705199'})
-def test_mask_account_card(x):
-    account_number = x[x.rfind(' ') + 1:]
+@pytest.mark.parametrize("value", ["Visa Platinum ", "Счет ", ""])
+def test_mask_account_card_valueerror(value):
+    with pytest.raises(ValueError):
+        mask_account_card(value)
 
-    if 'Счет' in x:
-        return (x[: x.rfind(' ')]
-                + ' '
-                + get_mask_account(account_number))
-    else:
-        return (x[: x.rfind(' ')]
-                + ' '
-                + get_mask_card_number(account_number))
+
+def test_get_date_valueerror():
+    with pytest.raises(ValueError):
+        get_date("")
+
+def test_get_date():
+    assert get_date("2024-03-11T02:26:18.671407") == "11.03.2024"

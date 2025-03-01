@@ -1,20 +1,19 @@
-def get_mask_card_number(card_number: str) -> str:
-    """Функция маскировки номера карты"""
+from typing import Any
 
-    card_number_str = str(card_number)
+def get_mask_card_number(card_number: Any) -> str:
+    """Принимает на вход номер карты, возвращает маску карты в типе str"""
+    card_number = str(card_number)
+    card_number = card_number.replace(" ", "")
+    if card_number.isdigit() and 12 < len(card_number) < 20:
+        masked_card_number = card_number[:4] + " " + card_number[4:6] + "** **** " + card_number[-4:]
+        return str(masked_card_number)
+    raise ValueError("некорректный номер карты")
 
-    if len(card_number_str) == 16:
-        return f"{card_number_str[:4]} {card_number_str[4:6]}** **** {card_number_str[-4:]}"
-    else:
-        return "Неверный формат банковской карты"
-
-
-def get_mask_account(accound_number: str) -> str:
-    """Функция маскировки номера счета"""
-
-    account_number_str = str(accound_number)
-
-    if len(account_number_str) == 20:
-        return f"**{account_number_str[-4:]}"
-    else:
-        return "Неверный формат номера счета"
+def get_mask_account(account_number: Any) -> str:
+    """Принимет номер счета, возвращает маску счета в типе str"""
+    account_number = str(account_number)
+    account_number = account_number.replace(" ", "")
+    if account_number.isdigit() and len(account_number) == 20:
+        masked_account = "**" + account_number[-4:]
+        return str(masked_account)
+    raise ValueError("некорректный номер счета")
