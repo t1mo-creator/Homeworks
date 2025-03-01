@@ -15,9 +15,9 @@ def mask_account_card(card_info: str) -> str:
             returned_number = masks.get_mask_card_number(card_infolist.pop(-1))
         else:
             raise ValueError("номер карты не указан")
-        card_infolist.append(returned_number)
-        masked_number = " ".join(card_infolist)
-        return str(masked_number)
+    card_infolist.append(returned_number)
+    masked_number = " ".join(card_infolist)
+    return str(masked_number)
 
 
 def get_date(core_date: str) -> str:
